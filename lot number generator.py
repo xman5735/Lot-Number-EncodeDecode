@@ -253,7 +253,7 @@ def printToFile(color, size, line, prodDate, pallet, lot):
     loca = Path('C:\Temp')
     fileStr = 'C:\Temp' + fileName
     fileLoca = Path(fileStr)
-    print(fileLoca)
+    #print(fileLoca)
     #loca = Path('~/Documents')
     print(loca)
     #check if direcctory exists
