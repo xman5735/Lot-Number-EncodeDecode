@@ -206,6 +206,8 @@ def getLotNum():
         lotNum = input("Please input lot number: ")
         #add 0x for hex 
         lotNumAdj = "0x" + lotNum
+        #make lowercase
+        lotNumAdj = lotNumAdj.lower()
         #convert to integer
         lotNumInt = int(lotNumAdj, 16)
         #print(lotNumInt)  
