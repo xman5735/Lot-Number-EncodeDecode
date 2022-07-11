@@ -9,6 +9,7 @@ def getColor():
     while i == 0:
         #ask for color input
         color = input('Input color or ? for options: ')
+        color = color.lower()
     # print options if requested
         if color == '?':
             print("white, yellow, lt grey, weatherwood, dk grey, lime green, aruba blue, turf green, cherrywood, cardinal red, patriot blue, brown, black")
@@ -244,7 +245,7 @@ def printToFile(color, size, line, prodDate, pallet, lot):
     timeString = today.strftime("%m_%d_%y")
     
     #create text to write
-    lines = (color, " ", size, " Line: ", line, " Date Produced: ", prodDate, " Pallet Number: ", pallet, " Lot Number is: ", lot)
+    lines = (color, " ", size, " Line: ", line, " Date Produced: ", prodDate, " Pallet Number: ", pallet, "\nLot Number is: ", lot)
     #create the text file
     fileName = "lot_numbers_" + timeString + ".txt"
     #create link to users documents folder
@@ -314,6 +315,7 @@ while r == 1:
     #remove 0x
     hexLotStr = hexLotStr[2:]
 
+    hexLotStr = hexLotStr.upper()
     printToFile(colorString, boardString, lineNum, prodDateNum, palletNum, hexLotStr)
     #print(colorNum)
     #print(boardNum)
