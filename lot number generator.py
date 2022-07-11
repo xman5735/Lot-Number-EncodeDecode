@@ -261,16 +261,16 @@ def printToFile(color, size, line, prodDate, pallet, lot):
         if os.path.exists(fileLoca) is True:
             #if exists, append new information
             with open (loca.joinpath(fileName), 'a') as f:
-                f.writelines(lines)
                 f.write("\n")
+                f.writelines(lines)
                 f.write("\n")
             print('File appended')
             return
         if os.path.exists(fileLoca) is False:
             #if does not exist, create the file
             with open (loca.joinpath(fileName), 'a') as f:
-                f.writelines(lines)
                 f.write("\n")
+                f.writelines(lines)
                 f.write("\n")
             print('File: ', fileName, ' created')
             return
