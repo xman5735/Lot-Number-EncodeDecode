@@ -1,4 +1,8 @@
-
+from datetime import date
+from os.path import exists
+from pathlib import Path
+import os
+from tkinter import Y
 #its not efficient but it works
 def getColor():
     i=0
@@ -6,7 +10,7 @@ def getColor():
         #ask for color input
         color = input('Input color or ? for options: ')
     # print options if requested
-        if color == '?': 
+        if color == '?':
             print("white, yellow, lt grey, weatherwood, dk grey, lime green, aruba blue, turf green, cherrywood, cardinal red, patriot blue, brown, black")
 
     # assign entered color to an integer 1 - 13
@@ -15,79 +19,79 @@ def getColor():
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'yellow':
             colorNum = 20
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'lt grey':
             colorNum = 30
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'weatherwood':
             colorNum = 40
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'dk grey':
             colorNum = 50
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'lime green':
             colorNum = 60
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'aruba blue':
             colorNum = 70
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'turf green':
             colorNum = 80
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'cherrywood':
             colorNum = 90
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'cardinal red':
             colorNum = 11
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'patriot blue':
             colorNum = 12
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'brown':
             colorNum = 13
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
         elif color == 'black':
             colorNum = 14
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
-            return colorNum
+            return colorNum, color
     #quit if error
         else:
             print("Please enter a correct color")
@@ -107,85 +111,85 @@ def getBoardSize():
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '3/4x1-3/4':
             boardNum = 51
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '3/4x2-5/8':
             boardNum = 52
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '3/4x3-1/2':
             boardNum = 53
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '3/4x5-1/2':
             boardNum = 54
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '1x5-1/2':
             boardNum = 55
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '1-1/8x3-1/2':
             boardNum = 56
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '1-1/2x1-1/2':
             boardNum = 57
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '1-1/2x2-1/2':
             boardNum = 58
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
-            return boardNum
+            return boardNum, boardSize
             i=1
         elif boardSize == '1-1/2x3-1/2':
             boardNum = 59
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '1-1/2x5-1/2':
             boardNum = 60
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '1-1/2x9-1/2':
             boardNum = 61
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '2-1/2x2-1/2':
             boardNum = 62
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         elif boardSize == '3-1/2x3-1/2':
             boardNum = 63
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            return boardNum
+            return boardNum, boardSize
         else:
             print("Please enter a correct board size")
 
@@ -222,7 +226,6 @@ def getProdDate():
         else:
             print('Please enter the correct date format')
 
-
 def getPalletNum():
     i=0
     while i==0:
@@ -236,6 +239,44 @@ def getPalletNum():
         else:
             print("Please enter the correct pallet number in 3 digits")
 
+def printToFile(color, size, line, prodDate, pallet, lot):
+    today = date.today()
+    timeString = today.strftime("%m_%d_%y")
+    
+    #create text to write
+    lines = (color, " ", size, " Line: ", line, " Date Produced: ", prodDate, " Pallet Number: ", pallet, " Lot Number is: ", lot)
+    #create the text file
+    fileName = "lot_numbers_" + timeString + ".txt"
+    #create link to users documents folder
+    #path = "/home"
+    #loca = os.path.join(path, "User/Documents", fileName)
+    loca = Path('C:\Temp')
+    fileStr = 'C:\Temp' + fileName
+    fileLoca = Path(fileStr)
+    print(fileLoca)
+    #loca = Path('~/Documents')
+    print(loca)
+    #check if direcctory exists
+    if loca.is_dir():
+        if os.path.exists(fileLoca) is True:
+            #if exists, append new information
+            with open (loca.joinpath(fileName), 'a') as f:
+                f.writelines(lines)
+                f.write("\n")
+                f.write("\n")
+            print('File appended')
+            return
+        if os.path.exists(fileLoca) is False:
+            #if does not exist, create the file
+            with open (loca.joinpath(fileName), 'a') as f:
+                f.writelines(lines)
+                f.write("\n")
+                f.write("\n")
+            print('File: ', fileName, ' created')
+            return
+    else:
+        print('Directory does not exist')
+    
 r=1
 while r == 1:
     #ensure the values are in strong so they cannot be added
@@ -246,9 +287,13 @@ while r == 1:
             / /_\\| | |  __/  __/ | | / / | (_) >  <  / ___/| | (_| \__ \ |_| | (__\__ \
             \____/|_|  \___|\___|_| |_\/   \___/_/\_\ \/    |_|\__,_|___/\__|_|\___|___/
                 """)
-    colorNum = str(getColor())
+   #get data
+   
+    colorInt, colorString = getColor()
+    colorNum = str(colorInt)
     print('')
-    boardNum = str(getBoardSize())
+    boardInt, boardString = getBoardSize()
+    boardNum = str(boardInt)
     print('')
     lineNum = str(getLineNumber())
     print('')
@@ -256,6 +301,7 @@ while r == 1:
     print('')
     palletNum = str(getPalletNum())
     print('')
+    
 
     #concatonate the strings into a single line
     rawLotStr = colorNum + boardNum + lineNum + prodDateNum + palletNum
@@ -268,6 +314,7 @@ while r == 1:
     #remove 0x
     hexLotStr = hexLotStr[2:]
 
+    printToFile(colorString, boardString, lineNum, prodDateNum, palletNum, hexLotStr)
     #print(colorNum)
     #print(boardNum)
     #print(lineNum)
