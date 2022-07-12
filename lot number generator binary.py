@@ -17,7 +17,7 @@ def getColor():
         color = color.lower()
     # print options if requested
         if color == '?':
-            print("white, yellow, lt grey, weatherwood, dk grey, lime green, aruba blue, turf green, cherrywood, cardinal red, patriot blue, brown, black")
+            print("white, yellow, lt grey, weathered wood, dk grey, lime green, aruba blue, turf green, cherry wood, cardinal red, patriot blue, tudor brown, black")
 
     # assign entered color to an integer 1 - 13
         if color == 'white':
@@ -37,8 +37,9 @@ def getColor():
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
+            color = 'Light Grey'
             return colorNum, color
-        elif color == 'weatherwood':
+        elif color == 'weathered wood':
             colorNum = '0100'
             #return color number to program and veify color
             print('The board color is set to ', color )
@@ -49,6 +50,7 @@ def getColor():
             #return color number to program and veify color
             print('The board color is set to ', color )
             i=1
+            color = 'Dark Grey'
             return colorNum, color
         elif color == 'lime green':
             colorNum = '0110'
@@ -86,7 +88,7 @@ def getColor():
             print('The board color is set to ', color )
             i=1
             return colorNum, color
-        elif color == 'brown':
+        elif color == 'tudor brown':
             colorNum = '1100'
             #return color number to program and veify color
             print('The board color is set to ', color )
@@ -131,7 +133,7 @@ def getBoardSize():
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
-            boardSize = '¾ x 2 ⅝'
+            boardSize = '¾ x 2 5/8'
             return boardNum, boardSize
         elif boardSize == '3/4x3-1/2':
             boardNum = '0100'
@@ -362,8 +364,8 @@ def printOut(colorString, palletNum, boardString, encodedLot, day, month, year):
     size3 = workbook.add_format()
     size4 = workbook.add_format()
     size1.set_font_size(80)
-    if colorString == 'WEATHERWOOD':
-        size2.set_font_size(75)
+    if colorString == 'WEATHERED WOOD':
+        size2.set_font_size(65)
     if colorString != 'WEATHERWOOD':
         size2.set_font_size(90)
     size3.set_font_size(36)
