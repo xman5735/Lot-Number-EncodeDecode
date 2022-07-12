@@ -1,0 +1,363 @@
+from datetime import date
+from os.path import exists
+from pathlib import Path
+import os
+from tkinter import Y
+charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234'
+
+#its not efficient but it works
+#functions to get data and change it into consistant form
+def getColor():
+    i=0
+    while i == 0:
+        #ask for color input
+        color = input('Input color or ? for options: ')
+        color = color.lower()
+    # print options if requested
+        if color == '?':
+            print("white, yellow, lt grey, weatherwood, dk grey, lime green, aruba blue, turf green, cherrywood, cardinal red, patriot blue, brown, black")
+
+    # assign entered color to an integer 1 - 13
+        if color == 'white':
+            colorNum = '0001'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'yellow':
+            colorNum =  '0010'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'lt grey':
+            colorNum = '0011'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'weatherwood':
+            colorNum = '0100'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'dk grey':
+            colorNum = '0101'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'lime green':
+            colorNum = '0110'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'aruba blue':
+            colorNum = '0111'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'turf green':
+            colorNum = '1000'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'cherrywood':
+            colorNum = '1001'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'cardinal red':
+            colorNum = '1010'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'patriot blue':
+            colorNum = '1011'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'brown':
+            colorNum = '1100'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+        elif color == 'black':
+            colorNum = '1101'
+            #return color number to program and veify color
+            print('The board color is set to ', color )
+            i=1
+            return colorNum, color
+    #quit if error
+        else:
+            print("Please enter a correct color")
+
+def getBoardSize():
+    i = 0
+    while i == 0:
+            
+        #ask for board size
+        boardSize = input('Enter Board size or ? for options: ')
+        #output the availible options for board size    
+        if boardSize == '?':
+            print("1/2x8, 3/4x1-3/4, 3/4x2-5/8, 3/4x3-1/2, 3/4x5-1/2, 1x5-1/2, 1-1/8x3-1/2, 1-1/2x1-1/2, 1-1/2x2-1/2, 1-1/2x3-1/2, 1-1/2x5-1/2, 1-1/2x9-1/2, 2-1/2x2-1/2, 3-1/2x3-1/2")
+        #assign entered board size a value over 50. previous numbers are for color    
+        elif boardSize == '1/2x8':
+            boardNum = '0001'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '3/4x1-3/4':
+            boardNum = '0010'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '3/4x2-5/8':
+            boardNum = '0011'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '3/4x3-1/2':
+            boardNum = '0100'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '3/4x5-1/2':
+            boardNum = '0101'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '1x5-1/2':
+            boardNum = '0110'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '1-1/8x3-1/2':
+            boardNum = '0111'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '1-1/2x1-1/2':
+            boardNum = '1000'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '1-1/2x2-1/2':
+            boardNum = '1001'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            return boardNum, boardSize
+            i=1
+        elif boardSize == '1-1/2x3-1/2':
+            boardNum = '1010'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '1-1/2x5-1/2':
+            boardNum = '1011'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '1-1/2x9-1/2':
+            boardNum = '1100'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '2-1/2x2-1/2':
+            boardNum = '1101'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        elif boardSize == '3-1/2x3-1/2':
+            boardNum = '1110'
+            #Return number of choosen board size and verify size
+            print('The selected board size is ', boardSize)
+            i=1
+            return boardNum, boardSize
+        else:
+            print("Please enter a correct board size")
+
+def getLineNumber():
+    i=0
+    while i==0:        
+    #ask for line number
+        lineNum = input('Enter line number the board extruded on or ? or options: ')
+        lineNumInt = int(lineNum)
+    # print options if asked for    
+        if lineNum == '?':
+            print("1, 2, 3, 4, 5, 6")
+    #if equal to existing line, saVE. This needs some efficiency work    
+        if (lineNumInt <= 6):
+            i=1
+            #lineNum  = int(lineNum)
+            #return line number as int and verify line
+            print("The board was extruded on line ", lineNum)
+            lineNum = bin(lineNumInt)[2:].zfill(3)
+            return lineNum
+        else:
+            print("Please enter a correct line number.")
+
+def getProdDate():
+    i=0
+    while i==0:
+    #ask for production date in month and year
+        proDate = input('Enter month and year of production date in format mmyy: ')
+    #check if string is 4 digits
+        if len(proDate) == 4:
+            proDateNum = int(proDate)
+            if proDateNum < 1300:
+                i=1
+                #return production date as int and verify
+                print("The board was produced on ", proDate)
+                proDateInt = int(proDate)
+                proDate = bin(proDateInt)[2:].zfill(11)
+                return proDate
+            else:
+                print('Please enter the correct date format')
+        else:
+            print('Please enter the correct date format')
+
+def getPalletNum():
+    i=0
+    while i==0:
+    #ask for the pallet number this month
+        palletNum = input('Please enter the pallet number in three digits. Note that the number rolls over each month: ')
+        if len(palletNum) <= 3:
+            i=1
+            #return pallet number and confirm pallet number
+            print("THe pallet number is", palletNum)
+            palletNumInt = int(palletNum)
+            palletNum = bin(palletNumInt)[2:].zfill(8)
+            return(palletNum)
+        else:
+            print("Please enter the correct pallet number in 3 digits")
+
+#functions to modify and create new data
+def printToFile(color, size, line, prodDate, pallet, lot):
+    #turn bin files back into usable data
+    #line = '0b' + line
+    line = int(line,2)
+    #prodDate = '0b' + prodDate
+    prodDate = int(prodDate,2)
+    #pallet = '0b' + pallet
+    pallet = int(pallet,2)
+
+    line = str(line)
+    prodDate = str(prodDate)
+    pallet = str(pallet)
+    #get date
+    today = date.today()
+    timeString = today.strftime("%m_%d_%y")
+    
+    #create text to write
+    lines = (color, " ", size, " Line: ", line, " Date Produced: ", prodDate, " Pallet Number: ", pallet, "\nLot Number is: ", lot)
+    #create the text file
+    fileName = "lot_numbers_" + timeString + ".txt"
+    #create link to users documents folder
+    #path = "/home"
+    #loca = os.path.join(path, "User/Documents", fileName)
+    loca = Path('C:\Temp')
+    fileStr = 'C:\Temp' + fileName
+    fileLoca = Path(fileStr)
+    #print(fileLoca)
+    #loca = Path('~/Documents')
+    print(loca)
+    #check if direcctory exists
+    if loca.is_dir():
+        if os.path.exists(fileLoca) is True:
+            #if exists, append new information
+            with open (loca.joinpath(fileName), 'a') as f:
+                f.write("\n")
+                f.writelines(lines)
+                f.write("\n")
+            print('File appended')
+            return
+        if os.path.exists(fileLoca) is False:
+            #if does not exist, create the file
+            with open (loca.joinpath(fileName), 'a') as f:
+                f.write("\n")
+                f.writelines(lines)
+                f.write("\n")
+            print('File: ', fileName, ' created')
+            return
+    else:
+        print('Directory does not exist')
+
+def encode(bin_string):
+    # Split the string of 1s and 0s into lengths of 5.
+    chunks = [bin_string[i:i+5] for i in range(0, len(bin_string), 5)]
+    # Store the length of the last chunk so that we can add that as the last bit
+    # of data so that we know how much to pad the last chunk when decoding.
+    last_chunk_length = len(chunks[-1])
+    # Convert each chunk from binary into a decimal
+    decimals = [int(chunk, 2) for chunk in chunks]
+    # Add the length of our last chunk to our list of decimals.
+    decimals.append(last_chunk_length)
+    # Produce an ascii string by using each decimal as an index of our charset.
+    ascii_string = ''.join([charset[i] for i in decimals])
+
+    return ascii_string 
+
+#Main loop
+r=1
+while r == 1:
+    print(r"""
+               ___                       ___             ___ _           _   _          
+              / _ \_ __ ___  ___ _ __   / __\____  __   / _ \ | __ _ ___| |_(_) ___ ___ 
+             / /_\/ '__/ _ \/ _ \ '_ \ / _\/ _ \ \/ /  / /_)/ |/ _` / __| __| |/ __/ __|
+            / /_\\| | |  __/  __/ | | / / | (_) >  <  / ___/| | (_| \__ \ |_| | (__\__ \
+            \____/|_|  \___|\___|_| |_\/   \___/_/\_\ \/    |_|\__,_|___/\__|_|\___|___/
+                """)
+   #get data
+    colorBin, colorString = getColor()
+    print('')
+    boardBin, boardString = getBoardSize()
+    print('')
+    lineBin = getLineNumber()
+    print('')
+    prodDateBin = getProdDate()
+    print('')
+    palletBin = getPalletNum()
+    print('')
+    
+    
+    #concatonate the strings into a single line
+    rawLotStr = colorBin + boardBin + lineBin + prodDateBin + palletBin
+    print(rawLotStr)
+    #make sure it is 31 digits
+    #rawLotStr.rjust(31, '0')
+    #encode
+    encodedLot = encode(rawLotStr)
+    print(encodedLot)
+
+
+
+    #print results to file
+    printToFile(colorString, boardString, lineBin, prodDateBin, palletBin, encodedLot)
+    
+    #Ask to contiue or quit
+    n = input("Press 1 to continue, anything else to exit: ")
+    if n == "1":
+        r = 1
+    else:
+        r = 0
