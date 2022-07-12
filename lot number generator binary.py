@@ -418,9 +418,9 @@ while r == 1:
     palletNum, prodDateS = printToFile(colorString, boardString, lineBin, prodDateBin, palletBin, encodedLot)
     
     #print?
-    printQuestion = input("Do you want to print label? Y/N")
+    printQuestion = input("Do you want to print label? Y/N: ")
     printQuestion = printQuestion.lower()
-    if printQuestion == y:
+    if printQuestion == 'y':
         printOut(colorString, palletNum, boardString, encodedLot)
     #Ask to contiue or quit
     n = input("Press 1 to continue, anything else to exit: ")
