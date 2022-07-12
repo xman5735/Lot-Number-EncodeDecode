@@ -3,6 +3,8 @@ from os.path import exists
 from pathlib import Path
 import os
 from tkinter import Y
+import xlsxwriter
+
 charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234'
 
 #its not efficient but it works
@@ -291,7 +293,7 @@ def printToFile(color, size, line, prodDate, pallet, lot):
                 f.writelines(lines)
                 f.write("\n")
             print('File appended')
-            return
+            return pallet, prodDate
         if os.path.exists(fileLoca) is False:
             #if does not exist, create the file
             with open (loca.joinpath(fileName), 'a') as f:
@@ -299,7 +301,7 @@ def printToFile(color, size, line, prodDate, pallet, lot):
                 f.writelines(lines)
                 f.write("\n")
             print('File: ', fileName, ' created')
-            return
+            return pallet, prodDate
     else:
         print('Directory does not exist')
 
@@ -318,6 +320,66 @@ def encode(bin_string):
 
     return ascii_string 
 
+#create excel mile to print
+def printOut(colorString, palletNum, boardString, encodedLot):
+    colorString = colorString.upper()
+    #create workbook
+    workbookName = colorString + "_" + palletNum + ".xlsx"
+    workbookPath = 'C:/Temp/' + workbookName
+    workbook = xlsxwriter.Workbook(workbookPath)
+    #save workbook in specific location
+    worksheet = workbook.add_worksheet()
+    worksheet.set_margins(left=0.25, right=0.25)
+    worksheet.set_column(0, 0, 42)
+    worksheet.set_column(1, 1, 10)
+    worksheet.set_column(2, 2, 42)
+    worksheet.set_row(0, 105)
+    worksheet.set_row(1, 140)
+    worksheet.set_row(2, 85)
+     # Add a bold format to use to highlight cells.
+    
+    size1 = workbook.add_format()
+    size2 = workbook.add_format()
+    size3 = workbook.add_format()
+    size4 = workbook.add_format()
+    size1.set_font_size(55)
+    size2.set_font_size(90)
+    size3.set_font_size(30)
+    size4.set_font_size(30)
+    size3.set_underline(1)
+    size4.set_underline(1)
+    size1.set_align('center')
+    size1.set_align('vcenter')
+    size2.set_align('center')
+    size2.set_align('vcenter')
+    size3.set_align('left')
+    size4.set_align('right')
+    size3.set_bold()
+    size4.set_bold()
+    #copy a second time
+    worksheet.set_row(3, 40)
+    worksheet.set_row(4, 105)
+    worksheet.set_row(5, 140)
+    worksheet.set_row(6, 85)
+
+    #format dimensiions line
+    dims = "_______ -" + boardString
+    #format Color
+    color = colorString
+    #format date
+    date = "Date:                     " 
+    #format Skid lot
+    lot = "Lot #: " + encodedLot
+    worksheet.write('B1', dims, size1)
+    worksheet.write('B2', color, size2)
+    worksheet.write('A3', date, size3)
+    worksheet.write('C3', lot, size4)
+    worksheet.write('B5', dims, size1)
+    worksheet.write('B6', color, size2)
+    worksheet.write('A7', date, size3)
+    worksheet.write('C7', lot, size4)
+
+    workbook.close()
 #Main loop
 r=1
 while r == 1:
@@ -353,8 +415,10 @@ while r == 1:
 
 
     #print results to file
-    printToFile(colorString, boardString, lineBin, prodDateBin, palletBin, encodedLot)
+    palletNum, prodDateS = printToFile(colorString, boardString, lineBin, prodDateBin, palletBin, encodedLot)
     
+    #print?
+    printOut(colorString, palletNum, boardString, encodedLot)
     #Ask to contiue or quit
     n = input("Press 1 to continue, anything else to exit: ")
     if n == "1":
