@@ -210,6 +210,7 @@ def getSplit(lotNum):
         print("Lot number incorrect, please try again")
 
 def decode(ascii_string):
+    ascii_string = ascii_string.upper()
     # Convert each character to a decimal using its index in the charset.
     decimals = [charset.index(char) for char in ascii_string]
     # Take last decimal which is the final chunk length, and the second to last

@@ -117,84 +117,98 @@ def getBoardSize():
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '½ x 8'
             return boardNum, boardSize
         elif boardSize == '3/4x1-3/4':
             boardNum = '0010'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '¾ x 1 ¾'
             return boardNum, boardSize
         elif boardSize == '3/4x2-5/8':
             boardNum = '0011'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '¾ x 2 ⅝'
             return boardNum, boardSize
         elif boardSize == '3/4x3-1/2':
             boardNum = '0100'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '¾ x 3 ½'
             return boardNum, boardSize
         elif boardSize == '3/4x5-1/2':
             boardNum = '0101'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '¾ x 5 ½'
             return boardNum, boardSize
         elif boardSize == '1x5-1/2':
             boardNum = '0110'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '1 x 5 ½'
             return boardNum, boardSize
         elif boardSize == '1-1/8x3-1/2':
             boardNum = '0111'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '1 ⅛ x 3 ½' 
             return boardNum, boardSize
         elif boardSize == '1-1/2x1-1/2':
             boardNum = '1000'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '1 ½ x 1 ½'
             return boardNum, boardSize
         elif boardSize == '1-1/2x2-1/2':
             boardNum = '1001'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
+            i = 1
+            boardSize = '1 ½ x 2 ½'
             return boardNum, boardSize
-            i=1
         elif boardSize == '1-1/2x3-1/2':
             boardNum = '1010'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '1 ½ x 3 ½'
             return boardNum, boardSize
         elif boardSize == '1-1/2x5-1/2':
             boardNum = '1011'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '1 ½ x 5 ½'
             return boardNum, boardSize
         elif boardSize == '1-1/2x9-1/2':
             boardNum = '1100'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '1 ½ x 9 ½'
             return boardNum, boardSize
         elif boardSize == '2-1/2x2-1/2':
             boardNum = '1101'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '2 ½ x 2 ½'
             return boardNum, boardSize
         elif boardSize == '3-1/2x3-1/2':
             boardNum = '1110'
             #Return number of choosen board size and verify size
             print('The selected board size is ', boardSize)
             i=1
+            boardSize = '3 ½ x 3 ½'
             return boardNum, boardSize
         else:
             print("Please enter a correct board size")
@@ -223,19 +237,24 @@ def getProdDate():
     i=0
     while i==0:
     #ask for production date in month and year
-        proDate = input('Enter month and year of production date in format mmyy: ')
-    #check if string is 4 digits
-        if len(proDate) == 4:
-            proDateNum = int(proDate)
-            if proDateNum < 1300:
-                i=1
-                #return production date as int and verify
-                print("The board was produced on ", proDate)
-                proDateInt = int(proDate)
-                proDate = bin(proDateInt)[2:].zfill(11)
-                return proDate
-            else:
-                print('Please enter the correct date format')
+        proDate = input('Enter month and year of production date in format mmddyy: ')
+    #check if string is 6 digits
+        if len(proDate) == 6:
+            #breakdown into parts
+            month = proDate[0:2]
+            proDateShred = proDate[2:]
+            day = proDateShred[0:2]
+            proDateShred = proDateShred[2:]
+            year = proDateShred[0:2]
+            #lazy nesting
+            if int(day) <= 31:
+                if int(month) <= 12:
+                    #return production date as int and verify
+                    print("The board was produced on ", proDate)
+                    proDate = month + year
+                    proDateInt = int(proDate)
+                    proDate = bin(proDateInt)[2:].zfill(11)
+                    return proDate, day, month, year
         else:
             print('Please enter the correct date format')
 
@@ -283,7 +302,7 @@ def printToFile(color, size, line, prodDate, pallet, lot):
     fileLoca = Path(fileStr)
     #print(fileLoca)
     #loca = Path('~/Documents')
-    print(loca)
+    #print(loca)
     #check if direcctory exists
     if loca.is_dir():
         if os.path.exists(fileLoca) is True:
@@ -321,7 +340,7 @@ def encode(bin_string):
     return ascii_string 
 
 #create excel mile to print
-def printOut(colorString, palletNum, boardString, encodedLot):
+def printOut(colorString, palletNum, boardString, encodedLot, day, month, year):
     colorString = colorString.upper()
     #create workbook
     workbookName = colorString + "_" + palletNum + ".xlsx"
@@ -342,10 +361,13 @@ def printOut(colorString, palletNum, boardString, encodedLot):
     size2 = workbook.add_format()
     size3 = workbook.add_format()
     size4 = workbook.add_format()
-    size1.set_font_size(55)
-    size2.set_font_size(90)
-    size3.set_font_size(30)
-    size4.set_font_size(30)
+    size1.set_font_size(80)
+    if colorString == 'WEATHERWOOD':
+        size2.set_font_size(75)
+    if colorString != 'WEATHERWOOD':
+        size2.set_font_size(90)
+    size3.set_font_size(36)
+    size4.set_font_size(36)
     size3.set_underline(1)
     size4.set_underline(1)
     size1.set_align('center')
@@ -354,8 +376,10 @@ def printOut(colorString, palletNum, boardString, encodedLot):
     size2.set_align('vcenter')
     size3.set_align('left')
     size4.set_align('right')
+    #size1.set_bold()
     size3.set_bold()
     size4.set_bold()
+
     #copy a second time
     worksheet.set_row(3, 40)
     worksheet.set_row(4, 105)
@@ -363,11 +387,11 @@ def printOut(colorString, palletNum, boardString, encodedLot):
     worksheet.set_row(6, 85)
 
     #format dimensiions line
-    dims = "_______ -" + boardString
+    dims = "____ - " + boardString
     #format Color
     color = colorString
     #format date
-    date = "Date:                     " 
+    date = "Date: " + str(month) + '/' + str(day) + "/" + str(year)  
     #format Skid lot
     lot = "Lot #: " + encodedLot
     worksheet.write('B1', dims, size1)
@@ -397,7 +421,7 @@ while r == 1:
     print('')
     lineBin = getLineNumber()
     print('')
-    prodDateBin = getProdDate()
+    prodDateBin, day, month, year = getProdDate()
     print('')
     palletBin = getPalletNum()
     print('')
@@ -405,12 +429,12 @@ while r == 1:
     
     #concatonate the strings into a single line
     rawLotStr = colorBin + boardBin + lineBin + prodDateBin + palletBin
-    print(rawLotStr)
+    #print(rawLotStr)
     #make sure it is 31 digits
     #rawLotStr.rjust(31, '0')
     #encode
     encodedLot = encode(rawLotStr)
-    print(encodedLot)
+    print('Lot Number: ' + encodedLot)
 
 
 
@@ -421,7 +445,8 @@ while r == 1:
     printQuestion = input("Do you want to print label? Y/N: ")
     printQuestion = printQuestion.lower()
     if printQuestion == 'y':
-        printOut(colorString, palletNum, boardString, encodedLot)
+        printOut(colorString, palletNum, boardString, encodedLot, day, month, year)
+        print("File located at C:/Temp/" )
     #Ask to contiue or quit
     n = input("Press 1 to continue, anything else to exit: ")
     if n == "1":
