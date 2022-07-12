@@ -1,4 +1,4 @@
-('C:\\Users\\alex\\Desktop\\python files\\Lot Number EncodeDecode\\build\\lot '
+('C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\build\\lot '
  'number decoder\\lot number decoder.pkg',
  {'BINARY': 1,
   'DATA': 1,
@@ -9,8 +9,8 @@
   'PYZ': 0,
   'SPLASH': 1},
  [('PYZ-00.pyz',
-   'C:\\Users\\alex\\Desktop\\python files\\Lot Number '
-   'EncodeDecode\\build\\lot number decoder\\PYZ-00.pyz',
+   'C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\build\\lot '
+   'number decoder\\PYZ-00.pyz',
    'PYZ'),
   ('struct',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\struct.pyo',
@@ -37,8 +37,8 @@
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
    'PYSOURCE'),
   ('lot number decoder',
-   'C:\\Users\\alex\\Desktop\\python files\\Lot Number EncodeDecode\\lot '
-   'number decoder.py',
+   'C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\lot number '
+   'decoder.py',
    'PYSOURCE'),
   ('VCRUNTIME140.dll',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\VCRUNTIME140.dll',
@@ -71,8 +71,8 @@
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\libcrypto-1_1.dll',
    'BINARY'),
   ('base_library.zip',
-   'C:\\Users\\alex\\Desktop\\python files\\Lot Number '
-   'EncodeDecode\\build\\lot number decoder\\base_library.zip',
+   'C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\build\\lot '
+   'number decoder\\base_library.zip',
    'DATA')],
  False,
  False,

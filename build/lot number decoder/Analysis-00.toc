@@ -1,6 +1,6 @@
-(['C:\\Users\\alex\\Desktop\\python files\\Lot Number EncodeDecode\\lot number '
+(['C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\lot number '
   'decoder.py'],
- ['C:\\Users\\alex\\Desktop\\python files\\Lot Number EncodeDecode'],
+ ['C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode'],
  ['codecs'],
  ['C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks',
   'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks\\__pycache__',
@@ -24,8 +24,8 @@
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
    'PYSOURCE'),
   ('lot number decoder',
-   'C:\\Users\\alex\\Desktop\\python files\\Lot Number EncodeDecode\\lot '
-   'number decoder.py',
+   'C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\lot number '
+   'decoder.py',
    'PYSOURCE')],
  [('os',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\os.py',
@@ -312,11 +312,11 @@
   ('tracemalloc',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
    'PYMODULE'),
-  ('stringprep',
-   'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
-   'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
    'PYMODULE')],
  [('VCRUNTIME140.dll',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\VCRUNTIME140.dll',
@@ -351,7 +351,7 @@
  [],
  [],
  [('base_library.zip',
-   'C:\\Users\\alex\\Desktop\\python files\\Lot Number '
-   'EncodeDecode\\build\\lot number decoder\\base_library.zip',
+   'C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\build\\lot '
+   'number decoder\\base_library.zip',
    'DATA')],
  [])

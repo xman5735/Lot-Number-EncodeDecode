@@ -1,4 +1,4 @@
-('C:\\Users\\alex\\Desktop\\python files\\Lot Number EncodeDecode\\build\\lot '
+('C:\\Users\\alex\\Documents\\GitHub\\Lot-Number-EncodeDecode\\build\\lot '
  'number decoder\\PYZ-00.pyz',
  [('os',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\os.py',
@@ -285,9 +285,9 @@
   ('tracemalloc',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
    'PYMODULE'),
-  ('stringprep',
-   'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
-   'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
    'PYMODULE')])
