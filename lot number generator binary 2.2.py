@@ -383,7 +383,7 @@ def encode(bin_string):
 def printOut(colorString, palletNum, boardString, encodedLot, day, month, year):
     colorString = colorString.upper()
     #create workbook
-    workbookName = colorString + "_" + palletNum + ".xlsx"
+    workbookName = colorString + "_" + boardString + '_' + palletNum + ".xlsx"
     workbookPath = 'C:/Temp/' + workbookName
     workbook = xlsxwriter.Workbook(workbookPath)
     #save workbook in specific location
