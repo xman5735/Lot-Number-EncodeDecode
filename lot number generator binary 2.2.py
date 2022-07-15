@@ -5,7 +5,7 @@ import os
 from tkinter import Y
 import xlsxwriter
 
-charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ23456'
+charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789'
 
 #its not efficient but it works
 #functions to get data and change it into consistant form
@@ -302,16 +302,16 @@ def getPalletNum():
     i=0
     while i==0:
     #ask for the pallet number this month
-        palletNum = input('Please enter the pallet number in three digits. Note that the number rolls over each month: ')
-        if len(palletNum) <= 3:
+        palletNum = input('Please enter the pallet number with 1. Example: 2 for the 2nd pallet of that run: ')
+        if len(palletNum) <= 1:
             i=1
             #return pallet number and confirm pallet number
-            print("THe pallet number is", palletNum)
-            palletNumInt = int(palletNum)
-            palletNum = bin(palletNumInt)[2:].zfill(8)
+            print("The pallet number is", palletNum)
+            #palletNumInt = int(palletNum)
+            #palletNum = bin(palletNumInt)[2:].zfill(3)
             return(palletNum)
         else:
-            print("Please enter the correct pallet number in 3 digits")
+            print("Please enter the correct pallet number in 1 digit")
 
 #functions to modify and create new data
 def printToFile(color, size, line, prodDate, pallet, lot):
@@ -321,7 +321,7 @@ def printToFile(color, size, line, prodDate, pallet, lot):
     #prodDate = '0b' + prodDate
     prodDate = int(prodDate,2)
     #pallet = '0b' + pallet
-    pallet = int(pallet,2)
+    #pallet = int(pallet,2)
 
     line = str(line)
     prodDate = str(prodDate)
@@ -466,29 +466,31 @@ while r == 1:
     print('')
     prodDateBin, day, month, year = getProdDate()
     print('')
-    palletBin = getPalletNum()
+    palletNum = getPalletNum()
+    palletSig = '-' + palletNum 
     print('')
     
     
     #concatonate the strings into a single line
-    rawLotStr = colorBin + boardBin + lineBin + prodDateBin + palletBin
-    #print(rawLotStr)
+    rawLotStr = colorBin + boardBin + lineBin + prodDateBin
+    print(rawLotStr)
     #make sure it is 31 digits
     #rawLotStr.rjust(31, '0')
     #encode
     encodedLot = encode(rawLotStr)
-    print('Lot Number: ' + encodedLot)
+    lotNum = encodedLot + palletSig
+    print('Lot Number: ' + lotNum)
 
 
 
     #print results to file
-    palletNum, prodDateS = printToFile(colorString, boardString, lineBin, prodDateBin, palletBin, encodedLot)
+    palletNum, prodDateS = printToFile(colorString, boardString, lineBin, prodDateBin, palletNum, lotNum)
     
     #print?
     printQuestion = input("Do you want to print label? Y/N: ")
     printQuestion = printQuestion.lower()
     if printQuestion == 'y':
-        printOut(colorString, palletNum, boardString, encodedLot, day, month, year)
+        printOut(colorString, palletNum, boardString, lotNum, day, month, year)
         print("File located at C:/Temp/" )
     #Ask to contiue or quit
     n = input("Press 1 to continue, anything else to exit: ")

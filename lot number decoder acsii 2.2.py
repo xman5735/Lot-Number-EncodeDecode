@@ -1,5 +1,5 @@
 
-charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ23456'
+charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789'
 
 #its not efficient but it works
 def getColor(color):
@@ -179,11 +179,16 @@ def getLotNum():
     i = 1
     while i == 1:
         lotNumBin = input("Please input lot number: ")
-        i = 0
-        return lotNumBin
+        palletNum = lotNumBin[-1:]
+        lotNumBin = lotNumBin[:-2]
+        if len(lotNumBin) == 6:
+            i = 0
+            return lotNumBin, palletNum
+        else:
+            print("Please enter a correct lot number.")
 
 def getSplit(lotNum):
-    if len(lotNum) == 30:
+    if len(lotNum) == 22:
         string = lotNum
         #get first 4 numbers for color
         color = string[0:4]
@@ -201,12 +206,10 @@ def getSplit(lotNum):
         date = lineSize[0:11]
         #remove date numbers from string
         dateSize = lineSize[11:]
-        #get pallet number (8) from string
-        pallet = dateSize[0:8]
 
         #print(color, " ", size, " ", line, " ", date, " ", pallet )
 
-        return color, size, line, date, pallet
+        return color, size, line, date
     else:
         print("Lot number incorrect, please try again")
 
@@ -239,7 +242,7 @@ while r == 1:
             \____/|_|  \___|\___|_| |_\/   \___/_/\_\ \/    |_|\__,_|___/\__|_|\___|___/
                 """)
     #get decoded lot number
-    lotNumBin = getLotNum()
+    lotNumBin, palletEnd = getLotNum()
     #convert back to binary
     lotNum = decode(lotNumBin)
     #print(lotNum)
@@ -247,15 +250,15 @@ while r == 1:
     splits = getSplit(lotNum)
 
 #break tuple 'splits' into integers
-    colorNum, sizeNum, lineNum, dateNum, palletNum = splits
+    colorNum, sizeNum, lineNum, dateNum = splits
 
     #turn bin into decimal string
     dateNum = int(dateNum,2)
     dateNum = str(dateNum)
     if len(dateNum) != 4:
         dateNum = '0' + dateNum
-    palletNum = int(palletNum, 2)
-    palletNum = str(palletNum)
+    #palletNum = int(palletNum, 2)
+    #palletNum = str(palletNum)
 
     #put month into proper format
 
@@ -267,7 +270,7 @@ while r == 1:
     print('')
     print('The boards were made on the ', dateNum[0:2], 'th month of', dateNum[-2:])
     print('')
-    print('Pallet number of the month: ', palletNum)
+    print('Pallet number: ', palletEnd)
     print('')
 
     #ask to continue
