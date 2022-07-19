@@ -383,7 +383,10 @@ def encode(bin_string):
 def printOut(colorString, palletNum, boardString, encodedLot, day, month, year):
     colorString = colorString.upper()
     #create workbook
-    workbookName = colorString + "_" + boardString + '_' + palletNum + ".xlsx"
+    if boardString == '¾ x 2 5/8':
+        workbookName = colorString + '_¾ x 2 5-8_' + palletNum + ".xlsx"
+    else:
+        workbookName = colorString + "_" + boardString + '_' + palletNum + ".xlsx"
     workbookPath = 'C:/Temp/' + workbookName
     workbook = xlsxwriter.Workbook(workbookPath)
     #save workbook in specific location
@@ -408,7 +411,7 @@ def printOut(colorString, palletNum, boardString, encodedLot, day, month, year):
         size2.set_font_size(65)
     else:
         size2.set_font_size(90)
-        print('else')
+        #print('else')
     size3.set_font_size(36)
     size4.set_font_size(36)
     size3.set_underline(1)
@@ -473,7 +476,7 @@ while r == 1:
     
     #concatonate the strings into a single line
     rawLotStr = colorBin + boardBin + lineBin + prodDateBin
-    print(rawLotStr)
+    #print(rawLotStr)
     #make sure it is 31 digits
     #rawLotStr.rjust(31, '0')
     #encode
