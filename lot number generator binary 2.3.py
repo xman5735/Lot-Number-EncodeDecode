@@ -5,7 +5,7 @@ import os
 from tkinter import Y
 import xlsxwriter
 
-charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789'
+charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789%!'
 
 #its not efficient but it works
 #functions to get data and change it into consistant form

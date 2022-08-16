@@ -1,5 +1,5 @@
 
-charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789'
+charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789%!'
 
 #its not efficient but it works
 def getColor(color):
