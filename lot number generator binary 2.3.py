@@ -5,7 +5,7 @@ import os
 from tkinter import Y
 import xlsxwriter
 
-charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789%!'
+charset = 'ABCDEFGHJKLMNPQRSTVWXYZ234567890'
 
 #its not efficient but it works
 #functions to get data and change it into consistant form
@@ -187,7 +187,7 @@ def getBoardSize():
         elif boardSize == '45':
             boardNum = '0111'
             #Return number of choosen board size and verify size
-            boardSize = '1 ⅛ x 3 ½' 
+            boardSize = '1 1/8 x 3 ½' 
             print('The selected board size is ', boardSize)
             i=1
             
