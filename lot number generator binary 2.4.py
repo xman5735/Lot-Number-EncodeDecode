@@ -187,8 +187,8 @@ def getBoardSize():
         elif boardSize == '45':
             boardNum = '0111'
             #Return number of choosen board size and verify size
-            boardSize = '1 1/8 x 3 ½' 
-            print('The selected board size is ', boardSize)
+            boardSize = '1 1-8 x 3 ½' 
+            print('The selected board size is 1 1/8 x 3 ½')
             i=1
             
             return boardNum, boardSize
