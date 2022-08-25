@@ -19,9 +19,13 @@ def getColor():
         while j == 0: 
             print(r"""
                 1. White        4. Weathered Wood   7. Aruba Blue   10. Cardinal Red    13. Black
+
                 -----------------------------------------------------------------------------------
+
                 2. Yellow       5. Dark Grey        8. Turf Green   11. Patriot Blue    
+
                 -----------------------------------------------------------------------------------
+                
                 3. Light Grey   6. Lime Green       9. Cherry Wood  12. Tudor Brown   
                 """)        
             #ask for color input
@@ -151,9 +155,13 @@ def getBoardSize():
             #boardSize = input('Enter Board size or ? for options: ')
             print(r"""
                 1. 1/2 x 8        4. 3/4 x 3-1/2    7. 1-1/8 x 3-1/2    10. 1-1/2 x 3-1/2   13. 2-1/2 x 2-1/2
+
                 -----------------------------------------------------------------------------------
+
                 2. 3/4 x 1-3/4    5. 3/4 x 5-1/2    8. 1-1/2 x 1-1/2    11. 1-1/2 x 5-1/2   14. 3-1/2 x 3-1/2
+
                 -----------------------------------------------------------------------------------
+
                 3. 3/4 x 2-5/8    6. 1 x 5-1/2      9. 1-1/2 x 2-1/2    12. 1-1/2 x 9-1/2   15. Bench Frame
                 """)
             boardDim = input('Select the Board Size by typing 1-15: ')
