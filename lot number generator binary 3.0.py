@@ -15,21 +15,22 @@ charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789!'
 def getColor():
     i=0
     while i == 0:
-
-        print(r"""
-            1. White        4. Weathered Wood   7. Aruba Blue   10. Cardinal Red    13. Black
-            -----------------------------------------------------------------------------------
-            2. Yellow       5. Dark Grey        8. Turf Green   11. Patriot Blue    
-            -----------------------------------------------------------------------------------
-            3. Light Grey   6. Lime Green       9. Cherry Wood  12. Tudor Brown   
-            """)        
-        #ask for color input
-        color = input('Input color number or ? for options: ')
+        j = 0
+        while j == 0: 
+            print(r"""
+                1. White        4. Weathered Wood   7. Aruba Blue   10. Cardinal Red    13. Black
+                -----------------------------------------------------------------------------------
+                2. Yellow       5. Dark Grey        8. Turf Green   11. Patriot Blue    
+                -----------------------------------------------------------------------------------
+                3. Light Grey   6. Lime Green       9. Cherry Wood  12. Tudor Brown   
+                """)        
+            #ask for color input
+            color = input('Input color number or ? for options: ')
+            print('*')
 
 
     # print options if requested
-        j = 0
-        while j == 0:   
+          
 
             if color == '?':
                 print("white, yellow, lt grey, weathered wood, dk grey, lime green, aruba blue, turf green, cherry wood, cardinal red, patriot blue, tudor brown, black")
@@ -130,7 +131,7 @@ def getColor():
         #quit if error
             else:
                 print("Please enter a correct color")
-                j = 1
+                j = 0
 
         colorNum = str(colorNum)
         #remove 0b from front of string. result of binary conversion
@@ -144,28 +145,29 @@ def getBoardSize():
     #create loop to run until correct values entered
     i = 0
     while i == 0:
-            
-        #ask for board size
-        #boardSize = input('Enter Board size or ? for options: ')
-        print(r"""
-            1. 1/2 x 8        4. 3/4 x 3-1/2    7. 1-1/8 x 3-1/2    10. 1-1/2 x 3-1/2   13. 2-1/2 x 2-1/2
-            -----------------------------------------------------------------------------------
-            2. 3/4 x 1-3/4    5. 3/4 x 5-1/2    8. 1-1/2 x 1-1/2    11. 1-1/2 x 5-1/2   14. 3-1/2 x 3-1/2
-            -----------------------------------------------------------------------------------
-            3. 3/4 x 2-5/8    6. 1 x 5-1/2      9. 1-1/2 x 2-1/2    12. 1-1/2 x 9-1/2   15. Bench Frame
-            """)
-        boardDim = input('Select the Board Size by typing 1-15: ')
-        #convert string to integer for comparison
-        boardDim = int(boardDim)
-        #check that board is a actual choice, give default if not for loop
-        if boardDim >= 16:
-            boardDim = 100
-        #convert int to string
-        boardDim = str(boardDim)
-        #create new variable so that boardDim can be called separatly 
-        boardSize = boardDim
         j = 0
-        while j == 0:
+        while j == 0:    
+            #ask for board size
+            #boardSize = input('Enter Board size or ? for options: ')
+            print(r"""
+                1. 1/2 x 8        4. 3/4 x 3-1/2    7. 1-1/8 x 3-1/2    10. 1-1/2 x 3-1/2   13. 2-1/2 x 2-1/2
+                -----------------------------------------------------------------------------------
+                2. 3/4 x 1-3/4    5. 3/4 x 5-1/2    8. 1-1/2 x 1-1/2    11. 1-1/2 x 5-1/2   14. 3-1/2 x 3-1/2
+                -----------------------------------------------------------------------------------
+                3. 3/4 x 2-5/8    6. 1 x 5-1/2      9. 1-1/2 x 2-1/2    12. 1-1/2 x 9-1/2   15. Bench Frame
+                """)
+            boardDim = input('Select the Board Size by typing 1-15: ')
+            print('*')
+            #convert string to integer for comparison
+            boardDim = int(boardDim)
+            #check that board is a actual choice, give default if not for loop
+            if boardDim >= 16:
+                boardDim = 100
+            #convert int to string
+            boardDim = str(boardDim)
+            #create new variable so that boardDim can be called separatly 
+            boardSize = boardDim
+        
             #output the availible options for board size    
             if boardSize == '?':
                 print("1/2x8, 3/4x1-3/4, 3/4x2-5/8, 3/4x3-1/2, 3/4x5-1/2, 1x5-1/2, 1-1/8x3-1/2, 1-1/2x1-1/2, 1-1/2x2-1/2, 1-1/2x3-1/2, 1-1/2x5-1/2, 1-1/2x9-1/2, 2-1/2x2-1/2, 3-1/2x3-1/2, Bench Frame")
@@ -277,10 +279,10 @@ def getBoardSize():
                 
             elif boardSize == '100100':
                 print("Please enter a correct board size selection")
-                j=1
+
             else:
-                print("Entered board slection does not match any produced boards")
-                j=1
+                print("Entered board selection does not match any produced boards")
+
         boardNum = str(boardNum)
         #remove 0b from front of string. result of binary conversion
         boardNum = boardNum[2:]
@@ -295,6 +297,7 @@ def getLineNumber():
     while i==0:        
     #ask for line number
         lineNum = input('Enter line number the board extruded on or ? or options: ')
+        print('*')
         lineNumInt = int(lineNum)
     # print options if asked for    
         if lineNum == '?':
@@ -319,6 +322,7 @@ def getProdDate():
     while i==0:
     #ask for production date in month and year
         proDate = input('Enter month and year of production date in format mmddyy: ')
+        print('*')
     #check if string is 6 digits
         if len(proDate) == 6:
             #breakdown into parts
@@ -349,6 +353,7 @@ def getPalletNum():
     while i==0:
     #ask for the pallet number this month
         palletNum = input('Please enter the pallet number with 1. Example: 2 for the 2nd pallet of that day: ')
+        print('*')
         #update here for more than 7 pallets (1/2)
         if len(palletNum) <= 1:
             i=1
@@ -458,6 +463,8 @@ def printOut(colorString, palletNum, boardString, encodedLot, day, month, year):
         size2.set_font_size(65)
     elif colorString == 'TUDOR BROWN':
         size2.set_font_size(65)
+    elif colorString == 'CHERRY WOOD':
+        size2.set_font_size(70)
     else:
         size2.set_font_size(90)
         #print('else')
@@ -504,6 +511,7 @@ def printOut(colorString, palletNum, boardString, encodedLot, day, month, year):
     workbook.close()
 
 #Main loop
+#Angus
 r=1
 while r == 1:
     print(r"""
@@ -512,6 +520,7 @@ while r == 1:
              / /_\/ '__/ _ \/ _ \ '_ \ / _\/ _ \ \/ /  / /_)/ |/ _` / __| __| |/ __/ __|
             / /_\\| | |  __/  __/ | | / / | (_) >  <  / ___/| | (_| \__ \ |_| | (__\__ \
             \____/|_|  \___|\___|_| |_\/   \___/_/\_\ \/    |_|\__,_|___/\__|_|\___|___/
+            ----------------------------------------------------------------------------
                 """)
    #get data
     colorBin, colorString = getColor()
@@ -531,7 +540,7 @@ while r == 1:
     
     #concatonate the strings into a single line
     rawLotStr = colorBin + boardBin + lineBin + prodDateBin
-    print(rawLotStr)
+    #print(rawLotStr)
 
     #encode
     encodedLot = encode(rawLotStr)
