@@ -529,6 +529,7 @@ def printOut(colorString, palletNum, boardString, encodedLot, makeDate):
     workbook.close()
 
 #used to increment date by 1 while chacking for a weekend
+#comment out noted section if friday has production
 def dateInc(day, month, year):
     #define the date into datetime format
     yearS = int(year) + 2000
@@ -540,12 +541,17 @@ def dateInc(day, month, year):
     dateL += datetime.timedelta(days=1)
     #define new date as 0-6
     weekdayNum = dateL.weekday()
-    #check if = to 5, meaning saturday, move forward by 2
+    #check if = to 5, meaning saturday, move forward by two
     if weekdayNum == 5:
         dateL += datetime.timedelta(days=2)
-    #check if = to 6, meaning sunday, m ove forward one
+    #check if = to 6, meaning sunday, move forward one
     elif weekdayNum == 6:
         dateL += datetime.timedelta(days=1)
+    #check if = to 4, meaning friday, move forward three
+    #comment this out if producing on friday
+    elif weekdayNum == 4:
+        dateL += datetime.timedelta(days=3)
+
     #convert back into string
     day = dateL.strftime("%d")
     month = dateL.strftime("%m")
