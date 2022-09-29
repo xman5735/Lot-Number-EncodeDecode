@@ -280,15 +280,17 @@ while r == 1:
     #palletNum = str(palletNum)
 
     #put month into proper format
+    monthNum = dateNum[0:2]
+    dayNum = dateNum[-2:]
 
     colorOut = getColor(colorNum)
     print('')
     boardOut = getBoardSize(sizeNum)
     print('')
-    print('The line number is: ', int(lineNum,2))
+    print('Line number: ', int(lineNum,2))
     print('')
-    print('The boards were made on the month: ', dateNum[0:2], ' and the day', dateNum[-2:])
-    print('Exact year created will be on label and records')
+    print('The pallet was made on: ', monthNum, '/', dayNum)
+    print('Year will be on label and records')
     print('')
     print('Pallet number: ', palletEnd)
     print('')

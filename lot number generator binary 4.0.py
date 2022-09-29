@@ -571,7 +571,9 @@ def setDate(day, month, year):
 
 #Main loop
 #Angus
-print(r"""
+r=1
+while r == 1:
+    print(r"""
            ___                       ___             ___ _           _   _          
           / _ \_ __ ___  ___ _ __   / __\____  __   / _ \ | __ _ ___| |_(_) ___ ___ 
          / /_\/ '__/ _ \/ _ \ '_ \ / _\/ _ \ \/ /  / /_)/ |/ _` / __| __| |/ __/ __|
@@ -579,51 +581,51 @@ print(r"""
         \____/|_|  \___|\___|_| |_\/   \___/_/\_\ \/    |_|\__,_|___/\__|_|\___|___/
         ----------------------------------------------------------------------------
         """)
-#collect raw data and process it individually
-colorBin, colorString = getColor()
-print('')
-boardBin, boardString = getBoardSize()
-print('')
-lineBin = getLineNumber()
-print('')
-prodDateBin, day, month, year, howMany = getProdDate()
-print('')
-palletNum = getPalletNum()
-print('')
+    #collect raw data and process it individually
+    colorBin, colorString = getColor()
+    print('')
+    boardBin, boardString = getBoardSize()
+    print('')
+    lineBin = getLineNumber()
+    print('')
+    prodDateBin, day, month, year = getProdDate()
+    print('')
+    palletNum, howMany = getPalletNum()
+    print('')
 
 
-#parse the data together and loop to make iterations
-i = 1
-while i <= int(howMany):
-    j = 0
-    #runs the loop twice for each day, since two pallets can be made per day, on average
-    while j <= 1 and i <= int(howMany):
-        #call setDate to update the date for each day
-        makeDate, makeDateBin = setDate(day, month, year) 
+    #parse the data together and loop to make iterations
+    i = 1
+    while i <= int(howMany):
+        j = 0
+        #runs the loop twice for each day, since two pallets can be made per day, on average
+        while j <= 1 and i <= int(howMany):
+            #call setDate to update the date for each day
+            makeDate, makeDateBin = setDate(day, month, year) 
 
-        #create lot number
-        rawLotStr = colorBin + boardBin + lineBin + makeDateBin
-        encodedLot = encode(rawLotStr)
+            #create lot number
+            rawLotStr = colorBin + boardBin + lineBin + makeDateBin
+            encodedLot = encode(rawLotStr)
 
-        #create, palletnumber and append it to lotNum
-        palletSig = '-' + palletNum 
-        lotNum = encodedLot + palletSig
+            #create, palletnumber and append it to lotNum
+            palletSig = '-' + palletNum 
+            lotNum = encodedLot + palletSig
 
-        #prints to text file for reference
-        printToFile(colorString, boardString, lineBin, makeDateBin, palletNum, lotNum)
-        #create label to print out
-        printOut(colorString, palletNum, boardString, lotNum, makeDate)
+            #prints to text file for reference
+            printToFile(colorString, boardString, lineBin, makeDateBin, palletNum, lotNum)
+            #create label to print out
+            printOut(colorString, palletNum, boardString, lotNum, makeDate)
 
-        #iterate pallet number in loop
-        palletNum = int(palletNum) + 1
-        palletNum = str(palletNum)
+            #iterate pallet number in loop
+            palletNum = int(palletNum) + 1
+            palletNum = str(palletNum)
 
-        j = j + 1
-        i = i + 1
-    #update date to next day, excluding weekends 
-    day, month, year = dateInc(day, month, year)
+            j = j + 1
+            i = i + 1
+        #update date to next day, excluding weekends 
+        day, month, year = dateInc(day, month, year)
 
-    
+
 
 print("File located at C:/Temp/" )
 #Ask to contiue or quit
