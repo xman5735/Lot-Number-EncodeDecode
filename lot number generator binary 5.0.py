@@ -106,98 +106,98 @@ def assignColor(colorInput):
 def getColor(color):
     j = 0
     while j == 0:
-            color = str(color)
-        # assign entered color to an integer 1 - 13
-            if color == '1':
-                colorNum = bin(int(color))
-                colorName = 'White'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        color = str(color)
+    # assign entered color to an integer 1 - 13
+        if color == '1':
+            colorNum = bin(int(color))
+            colorName = 'White'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '2':
-                colorNum =  bin(int(color))
-                colorName = 'Yellow'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '2':
+            colorNum =  bin(int(color))
+            colorName = 'Yellow'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '3':
-                colorNum = bin(int(color))
-                colorName = 'Light Grey'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '3':
+            colorNum = bin(int(color))
+            colorName = 'Light Grey'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '4':
-                colorNum = bin(int(color))
-                colorName = 'Weathered Wood'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '4':
+            colorNum = bin(int(color))
+            colorName = 'Weathered Wood'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '5':
-                colorNum = bin(int(color))
-                colorName = 'Dark Grey'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '5':
+            colorNum = bin(int(color))
+            colorName = 'Dark Grey'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '6':
-                colorNum = bin(int(color))
-                colorName = 'Lime Green'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '6':
+            colorNum = bin(int(color))
+            colorName = 'Lime Green'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '7':
-                colorNum = bin(int(color))
-                colorName = 'Aruba Blue'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '7':
+            colorNum = bin(int(color))
+            colorName = 'Aruba Blue'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '8':
-                colorNum = bin(int(color))
-                colorName = 'Turf Green'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '8':
+            colorNum = bin(int(color))
+            colorName = 'Turf Green'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '9':
-                colorNum = bin(int(color))
-                colorName = 'Cherry wood'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '9':
+            colorNum = bin(int(color))
+            colorName = 'Cherry wood'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '10':
-                colorNum = bin(int(color))
-                colorName = 'Cardinal Red'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '10':
+            colorNum = bin(int(color))
+            colorName = 'Cardinal Red'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '11':
-                colorNum = bin(int(color))
-                colorName = 'Patriot Blue'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '11':
+            colorNum = bin(int(color))
+            colorName = 'Patriot Blue'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '12':
-                colorNum = bin(int(color))
-                colorName = 'Tudor Brown'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '12':
+            colorNum = bin(int(color))
+            colorName = 'Tudor Brown'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
-            if color == '13':
-                colorNum = bin(int(color))
-                colorName = 'Black'
-                #return color number to program and veify color
-                print('The board color is set to ', colorName )
-                j=1
+        if color == '13':
+            colorNum = bin(int(color))
+            colorName = 'Black'
+            #return color number to program and veify color
+            print('The board color is set to ', colorName )
+            j=1
 
     colorNum = str(colorNum)
     #remove 0b from front of string. result of binary conversion
@@ -602,6 +602,7 @@ def push_the_button():
     input_properties = "Color : " + colorInput + "  || Profile: " + profileInput + "\n" + " Date: " + dateString +  "  || Line: " + line_number
     output_label["text"] = input_properties
     output_label.config(font=("Helvetica", 12))
+
     #########################################################################
     assignedColor = assignColor(colorInput)
     colorBin, colorString = getColor(assignedColor)
