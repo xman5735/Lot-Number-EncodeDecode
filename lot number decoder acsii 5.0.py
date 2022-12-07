@@ -269,6 +269,7 @@ def on_button_click():
     text = lot_input.get()
     
     # Set the text of the output label to the entered text
+    text = text.upper()
     output_label.config(text=text)
 
     lotNumBin, palletEnd = getLotNum(text)
