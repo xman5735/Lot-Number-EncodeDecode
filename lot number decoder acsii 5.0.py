@@ -295,7 +295,8 @@ def on_button_click():
     colorOut = getColor(colorNum)
     print('')
     boardOut = getBoardSize(sizeNum)
-    lineNum = int(lineNum)
+    lineNum = int(lineNum, 2)
+
     lineNum = str(lineNum)
     results = "Color: " + colorOut + "\nProfile: " + boardOut + "\nDate: " + monthNum + '/' + dayNum + "\nLine Number: " + lineNum + "\nPallet Num: " + palletEnd
     result_label.config(text = results)
