@@ -491,6 +491,7 @@ file_label.config(font=("Helvetica", 12))
 #select pallet photo
 
 def select_image_file():
+    global file_path
     file_path = filedialog.askopenfilename(initialdir = "/Desktop", defaultextension = ".jpg", filetypes=[("Image Files", "*.jpg;*.jpeg;*.png;*.gif")])
     if file_path:
         img_file_name.set(file_path)
