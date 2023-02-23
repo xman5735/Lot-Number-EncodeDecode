@@ -19,7 +19,7 @@ import lot_number_functions
 # Set up the root window
 root = tk.Tk()
 root.title("GFP Lot Number Generator")
-root.geometry("360x400")
+root.geometry("360x450")
 
 # Declare string variable for date
 dateStr = tk.StringVar()
@@ -70,6 +70,8 @@ output_label = tk.Label(root)
 output_label.config(font=("Helvetica", 12))
 lot_label = tk.Label(root)
 lot_label.config(font=("Helvetica", 12))
+lot_number = tk.Label(root)
+lot_number.config(font=("Helvetica", 12))
 
 #checkbox function for half day
 half_day = False
@@ -170,6 +172,7 @@ def push_the_button():
     # Output the result
     lot_out = "File located at Desktop\\Files\\Labels"
     lot_label["text"] = lot_out
+    lot_number["text"] = "Lot # : " + lotNum
 
 
 button = tk.Button(root, text="Generate Lot Number", command=push_the_button)
@@ -192,6 +195,7 @@ checkbox.pack()
 button.pack()
 output_label.pack()
 lot_label.pack()
+lot_number.pack()
 
 
 # Start the main event loop

@@ -273,98 +273,193 @@ def write_to_excel(file_path, to_excel_tuple):
     # Write the data to the excel sheet
     append_to_excel(file_path, format_data, column)
 
-def read_file(lot_num_in, color_in, profile_in, pallet_num_in, date_produced_in, line_num_in):
-    
+def write_color(to_excel_tuple):
+        
+    (lot_num, lot_color_var, lot_profile_var, lot_pallet_num_var, lot_date_produced_var, lot_line_num_var, hours, dateStr,
+                    densityStr, lot_avg_L, lot_avg_a, lot_avg_b, lot_range_L, lot_range_a, lot_range_b, deltaStr,
+                        width_entry, edge_entry, middle_entry, med_entry, widthStr, edgeStr, middleStr, medStr, deltaStr, 
+                            color_lotStr, notes_entry, img_file_name,  ERC_file_name) = to_excel_tuple
 
-    #find path to users desktop
+    def getfilepath(lot_color_var):
+        # Save the Excel file on the user's desktop in a folder called "Files"
+        # Desktop path
+        desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
+
+        # Generate folder path
+        folder_path_create = 'Files\\Data\\Reports\\Color_logs\\'
+        files_folder = os.path.join(desktop, folder_path_create)
+
+        # Check if folder path exists, create it if it doesn't
+        if not os.path.exists(files_folder):
+            os.makedirs(files_folder)
+
+        # Generate file path
+        file_path = os.path.join(files_folder, lot_color_var + '.xlsx')
+
+        # Check if file exists, skip creation if it does
+        if not os.path.exists(file_path):
+            # Create the file if it doesn't exist
+                wb = openpyxl.Workbook()
+        else:
+            wb = openpyxl.load_workbook(file_path)
+
+        wb.save(file_path)
+
+        return file_path
+    
+    def format_file(file_path):
+        data_list =  ["Lot Num:", "Color:", "Line Num:", "Date Produced:", "Sampled Time:", "Color L:", "Result L:", "Color a:", "Result a:", "Color b:", "Result b:", "Color Lot #:"]
+        # Load the existing workbook
+        workbook = openpyxl.load_workbook(file_path)
+
+        # Select the first sheet in the workbook
+        sheet = workbook.active
+
+        # set the width of the column
+        sheet.column_dimensions['A'].width = 20
+
+        # Append the data to the sheet, one value at a time
+        for i, value in enumerate(data_list):
+            sheet.cell(row=i + 1, column=1, value=value)
+
+        # Save the changes to the workbook
+        workbook.save(file_path)
+        return(sheet)
+    
+    def find_column(sheet, target_value, target_date):
+        column = 1
+        # Loop through each column
+        while True:
+            cell_value = sheet.cell(row=1, column=column).value
+            cell_value_date = sheet.cell(row=5, column=column).value
+
+            # Check if the column already has an entry with the same hour and date
+            if cell_value == target_value:
+                if cell_value_date == target_date:
+                    print('Previous entry found in ' + str(column) + ' and will be updated')
+                    return column
+            # Check if the column is empty
+            elif cell_value is None:
+                print('No entry found and will be updated at ' + str(column))
+                return column
+            column += 1
+    file_path = getfilepath(lot_color_var)
+    sheet = format_file(file_path)
+    column_set = find_column(sheet, lot_num, hours)
+    # Function to append the data to the excel sheet
+
+    workbook = openpyxl.load_workbook(file_path)
+
+    # Select the first sheet in the workbook
+    sheet = workbook.active
+
+    data_list = lot_num, lot_color_var, lot_line_num_var, dateStr, hours, lot_avg_L, lot_range_L, lot_avg_a, lot_range_a, lot_avg_b, lot_range_b, color_lotStr
+    # Append the data to the sheet, one value at a time
+    for i, value in enumerate(data_list):
+        sheet.cell(row=i + 1, column=column_set, value=value)
+
+    # Save the changes to the workbook
+    workbook.save(file_path)
+
+def write_profile(to_excel_tuple):
+            
+    (lot_num, lot_color_var, lot_profile_var, lot_pallet_num_var, lot_date_produced_var, lot_line_num_var, hours, dateStr,
+                    densityStr, lot_avg_L, lot_avg_a, lot_avg_b, lot_range_L, lot_range_a, lot_range_b, deltaStr,
+                        width_entry, edge_entry, middle_entry, med_entry, widthStr, edgeStr, middleStr, medStr, deltaStr, 
+                            color_lotStr, notes_entry, img_file_name,  ERC_file_name) = to_excel_tuple
+
+    def getfilepath(lot_profile_var):
+        # Save the Excel file on the user's desktop in a folder called "Files"
+        # Desktop path
+        desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
+
+        # Generate folder path
+        folder_path_create = 'Files\\Data\\Reports\\Profile_logs\\'
+        files_folder = os.path.join(desktop, folder_path_create)
+
+        # Check if folder path exists, create it if it doesn't
+        if not os.path.exists(files_folder):
+            os.makedirs(files_folder)
+
+        # Generate file path
+        file_path = os.path.join(files_folder, lot_profile_var.replace("/", "-") + '.xlsx')
+
+        # Check if file exists, skip creation if it does
+        if not os.path.exists(file_path):
+            # Create the file if it doesn't exist
+                wb = openpyxl.Workbook()
+        else:
+            wb = openpyxl.load_workbook(file_path)
+
+        wb.save(file_path)
+
+        return file_path
+    
+    def format_file(file_path):
+        data_list =  ["Lot Num:", "Profile:", "Line Num:", "Date Produced:", "Sampled Time:", "Width", "Edge", "Middle", "Med", "Delta"]
+        # Load the existing workbook
+        workbook = openpyxl.load_workbook(file_path)
+
+        # Select the first sheet in the workbook
+        sheet = workbook.active
+
+        # set the width of the column
+        sheet.column_dimensions['A'].width = 20
+
+        # Append the data to the sheet, one value at a time
+        for i, value in enumerate(data_list):
+            sheet.cell(row=i + 1, column=1, value=value)
+
+        # Save the changes to the workbook
+        workbook.save(file_path)
+        return(sheet)
+    
+    def find_column(sheet, target_value, target_date):
+        column = 1
+        # Loop through each column
+        while True:
+            cell_value = sheet.cell(row=1, column=column).value
+            cell_value_date = sheet.cell(row=5, column=column).value
+
+            # Check if the column already has an entry with the same hour and date
+            if cell_value == target_value:
+                if cell_value_date == target_date:
+                    print('Previous entry found in ' + str(column) + ' and will be updated')
+                    return column
+            # Check if the column is empty
+            elif cell_value is None:
+                print('No entry found and will be updated at ' + str(column))
+                return column
+            column += 1
+    file_path = getfilepath(lot_profile_var)
+    sheet = format_file(file_path)
+    column_set = find_column(sheet, lot_num, hours)
+    # Function to append the data to the excel sheet
+
+    workbook = openpyxl.load_workbook(file_path)
+
+    # Select the first sheet in the workbook
+    sheet = workbook.active
+
+    data_list = lot_num, lot_profile_var, lot_line_num_var, dateStr, hours, width_entry, edge_entry, middle_entry, med_entry, deltaStr
+    # Append the data to the sheet, one value at a time
+    for i, value in enumerate(data_list):
+        sheet.cell(row=i + 1, column=column_set, value=value)
+
+    # Save the changes to the workbook
+    workbook.save(file_path)
+
+def set_photo_place():
+    # Save the Excel file on the user's desktop in a folder called "Files"
+    # Desktop path
     desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
 
     # Generate folder path
-    folder_path_create = 'Files\\Data\\Reports\\' + 'Line ' + line_num_in + '\\' + profile_in.replace("/", "-") + '\\' + color_in + '\\'
+    folder_path_create = 'Files\\Data\\Photos\\Pallets\\'
     files_folder = os.path.join(desktop, folder_path_create)
-    file_name = str(lot_num_in) + '.xlsx'
-    file_path = os.path.join(files_folder, file_name)
-    
-    
 
-    # Function to find the column where the data should be read from
-    def read_column(sheet):
-        columns = []
-        # Loop through each cell in the first row, starting from the second column (index 1)
-        for col_idx, cell in enumerate(sheet[1][1:], start=1):
-            # Check if the cell value is not None
-            if cell.value is not None:
-                # Get the column letter
-                col_letter = openpyxl.utils.get_column_letter(col_idx + 1)
-                # Create a tuple with the column letter and value
-                result = (col_letter, cell.value)
-                columns.append(result)
-                
-        return columns
+    # Check if folder path exists, create it if it doesn't
+    if not os.path.exists(files_folder):
+        os.makedirs(files_folder)
 
-    # Check if folder path exists, return false if it doesnt
-    if not os.path.exists(file_path):
-        file_exists = False
-        print(file_path)
-        return file_exists
-    elif os.path.exists(file_path):
-        file_exists = True
-        wb = openpyxl.load_workbook(file_path)
-        sheet = wb.active
-        # Find the column to write the data
-        columns = read_column(sheet)
-    
-        column_b = "none"
-        column_c = "none"
-        column_d = "none"
-        column_e = "none"
-        column_f = "none"
-        column_g = "none"
-        column_h = "none"
-
-        for col_letter, value in columns:
-            if value == None:
-                value = None
-            if col_letter == 'B':
-                column_b = value
-            elif col_letter == 'C':
-                column_c = value
-            elif col_letter == 'D':
-                column_d = value
-            elif col_letter == 'E':
-                column_e = value
-            elif col_letter == 'F':
-                column_f = value
-            elif col_letter == 'G':
-                column_g = value
-            elif col_letter == 'H':
-                column_h = value
-            
-        print(column_b)
-        print(column_c)
-        print(column_d)
-        print(column_e)
-        print(column_f)
-        print(column_g)
-        print(column_h)
-        column_times = (column_b, column_c, column_d, column_e, column_f, column_g, column_h)
-        
-        return column_times, columns, file_exists, file_path
-
-def pull_from_file(columns, file_path):
-    wb = openpyxl.load_workbook(file_path)
-    sheet = wb.active
-
-    column_values = {}
-
-    for col_letter, value in columns:
-        column_values[col_letter] = []
-        for cell in sheet[col_letter]:
-            if cell.value:
-                column_values[col_letter].append(cell.value)
-            else:
-                column_values[col_letter].append("null")
-
-    for col_letter, values in column_values.items():
-        #print(f"Column {col_letter}: {values}")
-        return(column_values)
+    return files_folder

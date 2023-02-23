@@ -2,6 +2,7 @@ import os
 import datetime
 from pathlib import Path
 import xlsxwriter
+import openpyxl
 
 # Characters used for encode and decode. Modifying will result in lot number generation changes and failure to decode past lot numbers.
 charset = 'ABCDEFGHJKLMNPQRSTVWXYZ23456789#!'
@@ -327,38 +328,64 @@ def getPalletNum(pallet_number, num_of_pallets):
     # Return a tuple with both "palletNum" and "howMany"
     return(palletNum, howMany)
 
-#functions to modify and create new data. Appends all data to text file labels folder
+#functions to modify and create new data. Appends all data to excel file of the month
 def printToFile(color, size, line, prodDate, pallet, lot):
     # Convert binary strings to integers
     line = int(line, 2)
     prodDate = int(prodDate, 2)
 
-    # Get today's date and format it
+    # Get today's date and format it fr month and year
     today = datetime.date.today()
-    time_string = today.strftime("%m_%d_%y")
-
-    # Concatenate the data into a single string
-    lines = (color, " ", size, " Line: ", str(line), " Date Produced: ", str(prodDate), " Pallet Number: ", str(pallet), "\nLot Number is: ", lot)
-
+    time_string = today.strftime("%m_%y")
+    prodDateStr = str(prodDate)
+    date_append = str(prodDateStr[:-2]) + "/" + str(prodDateStr[-2:])
+    #make inputs into tuplle for enumeration
+    outline = ("Lot:", "Date:", "Profile:", "Color:", "Line #:", "Pallet #")
+    information = (lot, date_append, size, color, line, pallet)
     # Generate the file name using the date
-    file_name = "lot_numbers_" + time_string + ".txt"
+    file_name = "lot_numbers_" + time_string + ".xlsx"
 
     # Define the directory where the file will be stored
-    directory = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop\\Files\\Labels\\Records')
+    directory = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop\\Files\\Labels\\Records\\')
 
     # Create the directory if it does not already exist
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    # Combine the directory and file name into a single file path
-    file_str = os.path.join(directory, file_name)
-    file_loca = Path(file_str)
+    file_name = directory + file_name
 
-    # Open the file in append mode and write the data to it
-    with open (file_loca, 'a') as f:
-        f.write("\n" + " ".join(lines) + "\n")
+    if os.path.isfile(file_name):
 
-    # Return the pallet and prodDate values
+        # Open the Excel file
+        workbook = openpyxl.load_workbook(file_name)
+
+        # Select the active worksheet
+        worksheet = workbook.active
+
+        # Get the next available column
+        next_col = worksheet.max_column + 1
+
+        # Iterate over the tuple and insert each value into a cell in the next available column
+        for i, value in enumerate(information):
+            cell = worksheet.cell(row=i+1, column=next_col)
+            cell.value = value
+
+        workbook.save(file_name)
+        print("file appended")
+
+    else:
+            # If the file does not exist, create it and add the tuple of values to the first row
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        for i, value in enumerate(outline):
+            cell = worksheet.cell(row=i+1, column=1)
+            cell.value = value
+        for i, value in enumerate(information):
+            cell = worksheet.cell(row=i+1, column=2)
+            cell.value = value
+        workbook.save(file_name)
+        print("New file created:", file_name)
+
     return pallet, prodDate
 
 
