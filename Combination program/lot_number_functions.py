@@ -12,7 +12,7 @@ def getColorDecode(color):
     colors = {'00001': 'White', '00010': 'Yellow', '00011': 'Light Grey', 
               '00100': 'Weathered Wood', '00101': 'Dark Grey', '00110': 'Lime Green', 
               '00111': 'Aruba Blue', '01000': 'Turf Green', '01001': 'Cherry Wood', 
-              '01010': 'Cardinal Red', '01011': 'Patriot Blue', '01100': 'Brown', 
+              '01010': 'Cardinal Red', '01011': 'Patriot Blue', '01100': 'Tudor Brown', 
               '01101': 'Black'}
     
     # Get the color name from the dictionary based on the input color code

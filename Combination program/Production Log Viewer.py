@@ -54,7 +54,7 @@ def update_lot_num_entry(event):
 #Create label to instruct user to enter lot number below 
 made_lot_label = tk.Label(root, text="This Months Lots #'s")
 made_lot_label.grid(row=0, column=0)
-made_lot_label.config(font=("Helvetica", 12))
+
 
 #Create label to instruct user to enter lot number below 
 enter_lot_num_label = tk.Label(root, text="Enter Lot #")
@@ -190,7 +190,7 @@ def is_recall(event):
         if file_exists == True:
             breakdown_data()
         else:
-            print("file is ", file_exists)
+            print(file_exists)
     except NameError:
         #ignore the error and continue with the rest of the code
         pass
@@ -860,6 +860,17 @@ def on_store_click():
 
         elif continue_question == False:
             print('stopping')
+    if recall_enabled == False:
+            format_excel_tuple = (lot_num.get(), lot_color_var.get(), lot_profile_var.get(), lot_pallet_num_var.get(), lot_date_produced_var.get(), lot_line_num_var.get(), hours.get(), dateStr.get())
+            to_excel_tuple = (lot_num.get(), lot_color_var.get(), lot_profile_var.get(), lot_pallet_num_var.get(), lot_date_produced_var.get(), lot_line_num_var.get(), hours.get(), dateStr.get(),
+                                densityStr.get(), lot_avg_L.get(), lot_avg_a.get(), lot_avg_b.get(), lot_range_L.get(), lot_range_a.get(), lot_range_b.get(), deltaStr.get(),
+                                    width_entry.get(), edge_entry.get(), middle_entry.get(), med_entry.get(), widthStr.get(), edgeStr.get(), middleStr.get(), medStr.get(), deltaStr.get(), 
+                                        color_lotStr.get(), notes_entry.get(), img_file_name.get(),  ERC_file_name.get())
+            file_loc = Data_Locations.format_excel(format_excel_tuple)
+            Data_Locations.write_to_excel(file_loc, to_excel_tuple)
+            
+            Data_Locations.write_color(to_excel_tuple)
+            Data_Locations.write_profile(to_excel_tuple)
 
 index_button = tk.Button(root, text="Index", command=on_index_click)
 index_button.grid(row=22, column=5)

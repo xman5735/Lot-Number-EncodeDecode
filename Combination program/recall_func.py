@@ -65,21 +65,33 @@ def read_file(lot_num_in, color_in, profile_in, line_num_in):
     return file_exists, column_data, keys_tuple, file_path
     #return column_times, column_data, file_exists, file_path
 
+
 def pull_from_file(columns, file_path):
+    # Loads the workbook from the specified file path as read-only
     wb = openpyxl.load_workbook(file_path, read_only=True)
+    
+    # Selects the active sheet in the workbook
     sheet = wb.active
 
+    # Initializes an empty dictionary to store column values
     column_values = {}
 
+    # Loops over each column specified in the columns list
     for col_letter, value in columns:
+        # Initializes an empty list in the column_values dictionary for the current column
         column_values[col_letter] = []
+        
+        # Loops over each cell in the current column and appends the cell's value (or the string "null" if the cell is empty) to the corresponding list in the column_values dictionary
         for cell in sheet[col_letter]:
             if cell.value:
                 column_values[col_letter].append(cell.value)
             else:
                 column_values[col_letter].append("null")
 
+    # Loops over each column in the column_values dictionary and prints the column letter and its corresponding list of values
     for col_letter, values in column_values.items():
         #print(f"Column {col_letter}: {values}")
+        
+        # Returns the column_values dictionary
         return(column_values)
     
